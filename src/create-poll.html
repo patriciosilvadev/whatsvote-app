@@ -1,0 +1,58 @@
+<template>
+  <h1>New Poll</h1>
+  <div class="input">
+    <label for="group">Group</label>
+    <select id="group" class="u-full-width" value.bind="groupId">
+      <option repeat.for="group of groups" value="${group.id}">${group.name}</option>
+    </select>
+  </div>
+  <div class="input">
+    <label for="question">Question</label>
+    <input type="text" id="question" value.bind="question" class="u-full-width">
+  </div>
+  <div class="input">
+    <label for="description">Description</label>
+    <textarea id="description" class="u-full-width u-resize-vertical" value.bind="description"></textarea>
+  </div>
+  <div class="input">
+    <label>Options</label>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th style="width: 10%;">#</th>
+          <th>Text</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr repeat.for="option of options">
+          <td>${option.id + 1}</td>
+          <td>${option.text}</td>
+          <td>
+            <button class="button" click.delegate="deleteOption(option.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <form class="input" submit.delegate="addOption()">
+      <label for="optionText">Add option</label>
+      <div class="input row">
+        <div class="ten columns">
+          <input type="text" value.bind="newOption" id="optionText" class="u-full-width">
+        </div>
+        <div class="two columns">
+          <button type="submit" class="button-primary u-full-width">Add</button>
+      </div>
+    </div>
+  </form>
+  <div class="input">
+    <label for="method">Poll method</label>
+    <select id="method" value.bind="method" class="u-full-width">
+      <option value="single-choice">Single Choice</option>
+      <option value="multiple-choice">Multiple Choice</option>
+      <option value="stv">STV (Single Transferable Vote)</option>
+    </select>
+  </div>
+  <div class="input">
+    <button class="button button-primary" click.delegate="createPoll()">Create Poll</button>
+</template>

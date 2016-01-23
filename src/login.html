@@ -1,0 +1,15 @@
+<template>
+  <h1>Login</h1>
+  <form submit.delegate="login()">
+    <div class="input">
+      <label for="email">Email</label>
+      <input class="u-full-width" type="email" id="email" value.bind="email">
+    </div>
+    <div class="input">
+      <label for="password">Password</label>
+      <input class="u-full-width" type="password" id="password" value.bind="password">
+    </div>
+    <button type="submit" class="button button-primary">Log in</button>
+    <a route-href="route: signup" class="button">Sign up</a>
+  </form>
+</template>

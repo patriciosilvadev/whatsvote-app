@@ -1,0 +1,24 @@
+<template>
+  <nav class="navbar">
+    <div class="container">
+      <ul if.bind="!isAuthenticated" class="navbar-list">
+        <li repeat.for="row of router.navigation | authFilter: isAuthenticated" class="${row.isActive? 'active' : ''}">
+          <a href.bind="row.href">${row.title}</a>
+        </li>
+      </ul>
+      <ul if.bind="isAuthenticated" class="navbar-list">
+        <li repeat.for="row of router.navigation | authFilter: isAuthenticated" class="${row.isActive? 'active' : ''}" if.bind="row.title != 'Welcome'">
+          <a href.bind="row.href">${row.title}</a>
+        </li>
+      </ul>
+      <ul if.bind="!isAuthenticated" class="navbar-list u-pull-right">
+        <li><a route-href="route: login">Login</a></li>
+        <li><a route-href="route: signup">Sign Up</a></li>
+      </ul>
+      <ul if.bind="isAuthenticated" class="navbar-list u-pull-right">
+        <li><a>${fullName}</a></li>
+        <li><a href="#" click.delegate="logOut()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+</template>

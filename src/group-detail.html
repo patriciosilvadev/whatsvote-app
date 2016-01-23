@@ -1,0 +1,59 @@
+<template>
+  <div class="u-pull-right">
+    <a if.bind="group.linked" route-href="route: createPoll; params.bind: {group: group.id}" class="button button-primary">New Poll</a>
+    <button class="button" click.delegate="deleteGroup()">Delete</button>
+  </div>
+  <h1>${group.name}</h1>
+
+  <div class="alert" if.bind="alert">${alert}</div>
+  <section class="u-margin-bottom">
+    <div class="row">
+      <div class="two columns">
+        <strong>Link status</strong>
+      </div>
+      <div class="ten columns">
+        <span>${group.linked? 'linked' : 'not linked'}</span>
+      </div>
+    </div>
+    <div class="row" if.bind="group.jid">
+      <div class="two columns">
+        <strong>WhatsApp ID</strong>
+      </div>
+      <div class="ten columns">
+        <span>${group.jid}</span>
+      </div>
+    </div>
+  </section>
+  <section if.bind="group.linked">
+    <h4>Participants</h4>
+    <ul>
+      <li repeat.for="participant of group.participants">+${participant}</li>
+    </ul>
+    <button class="button" click.delegate="fetchGroup(true)">Refresh</button>
+  </section>
+
+  <section class="panel" if.bind="!group.linked">
+    <h5>Link this group</h5>
+    <p>This group is not linked. Because WhatsVote uses one phone number for multiple groups you must perform the following steps to connect WhatsVote to your WhatsApp group. Please make sure you are an Admin of the WhatsApp group you want to add WhatsVote to. If not, send these steps to a Group Admin.</p>
+    <ol>
+      <li>
+        <strong>Add the WhatsVote bot to your contacts</strong>
+        <p>On your phone, save the WhatsVote bot phone number as a contact: <code>+49 1520 4295777</code> (If the number is already in your contacts, skip this step.)</p>
+      </li>
+      <li>
+        <strong>Add the WhatsVote bot to your group</strong>
+        <p>Open WhatsApp, select the group you want to add WhatsVote to, go to the group settings and tap 'Add participant...'. Select the contact you created earlier and tap 'OK'</p>
+      </li>
+      <li>
+        <strong>Send a confirmation message to the group</strong>
+        <p>Now you need to send a WhatsApp message to the group you just added the WhatsVote bot to. This is to identify your group and to prove that you are a member of the group. Please send the following message:     <code>whatsvote ${email} ${group.registertoken}</code> After you have done that, reload this page.</p>
+        <button class="button button-primary" click.delegate="fetchGroup()">Refresh</button>
+      </li>
+    </ol>
+    <hr>
+    <h5>A note about privacy</h5>
+    <p>It is true that the WhatsVote bot can read all messages that will be sent to the groups you add it to. We do not process those messages aside from checking the registration message. We also never store any of the messages that the bot receives.</p>
+    <p>That said, although we discard the messages immediately, they still reach our servers. If you are concerned about this, here is a way you can still use WhatsVote without always having the bot in your group.</p>
+    <p>The bot only needs to be in your group when you register it for the first time, and when you start a new poll. Therefore you can remove the bot from your group at all other times.</p>
+  </section>
+</template>

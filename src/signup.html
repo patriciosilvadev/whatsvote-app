@@ -1,0 +1,34 @@
+<template>
+  <h1>Sign up</h1>
+  <div class="alert" if.bind="alert.length">
+    ${alert}
+  </div>
+  <form submit.delegate="signup()">
+    <div class="input row">
+      <div class="one-half column">
+        <label for="firstName">First name</label>
+        <input type="text" id="firstName" class="u-full-width" value.bind="firstname">
+      </div>
+      <div class="one-half column">
+        <label for="lastName">Last name</label>
+        <input type="text" id="lastName" class="u-full-width" value.bind="lastname">
+      </div>
+    </div>
+    <div class="input">
+      <label for="email">Email</label>
+      <input class="u-full-width" type="email" id="email" value.bind="email" value.bind="email">
+    </div>
+    <div class="input row">
+      <div class="one-half column">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="u-full-width" value.bind="password">
+      </div>
+      <div class="one-half column">
+        <label for="password2">Repeat</label>
+        <input type="password" id="password2" class="u-full-width" value.bind="passwordcheck">
+      </div>
+    </div>
+    <button type="submit" class="button button-primary">Sign up</button>
+    <a route-href="route: login" class="button">Log in</a>
+  </form>
+</template>

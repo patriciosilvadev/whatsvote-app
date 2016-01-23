@@ -1,0 +1,38 @@
+<template>
+  <h1>Groups</h1>
+  <table class="u-full-width u-margin-bottom">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Members</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="group of groups">
+        <td><a route-href="route: groupDetail; params.bind: {id: group.id}">${group.name}</a></td>
+        <td>${group.participants? group.participants.length : '-'}</td>
+        <td>${group.linked ? 'linked' : 'not linked'}</td>
+        <td>
+          <a if.bind="group.linked" route-href="route: createPoll; params.bind: {group: group.id}" class="button button-primary">New Poll</a>
+          <a route-href="route: groupDetail; params.bind: {id: group.id}" class="button">Group Settings</a>
+          <button click.delegate="deleteGroup(group.id)" class="button">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>New Group</h4>
+  <div class="row">
+    <div class="one-half column">
+      <form submit.delegate="createGroup()">
+        <div class="input">
+          <label for="groupName">Group name</label>
+          <input type="text" id="groupName" value.bind="groupName" class="u-full-width">
+        </div>
+        <button type="submit" class="button button-primary">Add Group</button>
+      </form>
+    </div>
+  </div>
+</template>
