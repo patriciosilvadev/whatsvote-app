@@ -3,6 +3,7 @@
   <div class="input">
     <label for="group">Group</label>
     <select id="group" class="u-full-width" value.bind="groupId">
+      <option></option>
       <option repeat.for="group of groups" value="${group.id}">${group.name}</option>
     </select>
   </div>
@@ -48,6 +49,7 @@
   <div class="input">
     <label for="method">Poll method</label>
     <select id="method" value.bind="method" class="u-full-width">
+      <option></option>
       <option value="single-choice">Single Choice</option>
       <option value="multiple-choice">Multiple Choice</option>
       <option value="stv">STV (Single Transferable Vote)</option>

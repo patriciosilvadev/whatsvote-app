@@ -1,0 +1,18 @@
+<template>
+  <h1>${poll.question}</h1>
+  <p><strong>${poll.description}</strong></p>
+  <div class="alert" if.bind="alert.length">
+    ${alert}
+  </div>
+  <div if.bind="poll">
+    <div class="input" repeat.for="option of poll.options">
+      <label>
+        <input type="radio" name="opts" value.bind="option.id" checked.bind="$parent.selectedOption">
+        <span class="label-body">${option.text}</span>
+      </label>
+    </div>
+    <div class="input">
+      <button class="button button-primary" click.delegate="submitVote()">Submit</button>
+    </div>
+  </div>
+</template>

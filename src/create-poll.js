@@ -46,4 +46,29 @@ export class CreatePoll {
     }
   }
 
+  createPoll() {
+    let poll = {
+      question: this.question,
+      description: this.description,
+      groupId: this.groupId,
+      options: this.options,
+      method: this.method
+    };
+
+    this.http.fetch('/polls', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(poll)
+    })
+      .then(response => response.json())
+      .then(response => {
+        alert('Poll submitted successfully')
+      })
+      .catch(error => {
+        this.alert = error;
+      })
+  }
+
 }

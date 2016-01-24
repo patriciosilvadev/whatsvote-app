@@ -1,0 +1,24 @@
+<template>
+  <h1>Polls</h1>
+  <table class="u-full-width u-margin-bottom">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Group</th>
+        <th>Votes cast</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="poll of polls">
+        <td><a route-href="route: pollDetail; params.bind: {id: poll.id}">${poll.question}</a></td>
+        <td>${poll.group.name}</td>
+        <td>${poll.votesCast}/${poll.votesTotal}</td>
+        <td>
+          <a route-href="route: pollDetail; params.bind: {id: poll.id}" class="button">Poll details</a>
+          <button click.delegate="deletePoll(poll.id)" class="button">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>

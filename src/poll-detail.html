@@ -1,0 +1,35 @@
+<template>
+  <h1>${poll.question}</h1>
+  <p><strong>${poll.description}</strong></p>
+  <div class="row">
+    <div class="one-half column">
+      <table class="u-full-width">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>Text</td>
+            <td>Votes</td>
+            <td>%</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr repeat.for="option of poll.options">
+            <td>${option.id}</td>
+            <td>${option.text}</td>
+            <td>${poll.votes[option.id].length}</td>
+            <td>${(poll.votes[option.id].length / poll.votesCast) * 100}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="one-half column">
+      <chart class="u-full-width" should-update="true" type="Doughnut" data.bind="chartData"></chart>
+    </div>
+  </div>
+  <div if.bind="poll.tokens.length">
+    <p class="center"><small>Last updated: ${lastUpdated}</small></p>
+    <div class="input center">
+      <button class="button button-primary" click.delegate="fetchPoll()">Refresh</button>
+    </div>
+  </div>
+</template>

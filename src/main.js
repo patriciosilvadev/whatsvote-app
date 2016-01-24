@@ -7,7 +7,8 @@ export function configure(aurelia) {
     .developmentLogging()
     .plugin('spoonx/aurelia-auth', baseConfig => {
       baseConfig.configure(config);
-    });
+    })
+    .plugin('xanecs/aurelia-chart');
 
   //Uncomment the line below to enable animation.
   //aurelia.use.plugin('aurelia-animator-css');

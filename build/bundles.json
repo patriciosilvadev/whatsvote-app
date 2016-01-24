@@ -24,13 +24,13 @@
         "aurelia-loader-default",
         "aurelia-history-browser",
         "aurelia-logging-console",
-        "bootstrap",
-        "bootstrap/css/bootstrap.css!text"
+        "skeleton",
+        "skeleton/css/skeleton.css!text"
       ],
       "options": {
         "inject": true,
         "minify": true,
-        "rev": true
+        "rev": false
       }
     }
   }
