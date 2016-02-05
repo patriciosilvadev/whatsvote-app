@@ -16,7 +16,7 @@
         <td>${poll.votesCast}/${poll.votesTotal}</td>
         <td>
           <a route-href="route: pollDetail; params.bind: {id: poll.id}" class="button">Poll details</a>
-          <button click.delegate="deletePoll(poll.id)" class="button">Delete</button>
+          <button click.delegate="deletePoll(poll)" class="button">Delete</button>
         </td>
       </tr>
     </tbody>

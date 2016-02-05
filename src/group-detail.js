@@ -34,11 +34,14 @@ export class GroupDetail {
   }
 
   deleteGroup() {
-    this.http.fetch(`/groups/${this.groupId}`, {
-      method: 'delete'
-    })
-      .then(response => {
-        this.router.navigateToRoute('groups');
-      });
+    return this.dialog.open({viewModel: DeletePrompt, model: this.group.name}).then(result => {
+      if (result.wasCancelled) return;
+      this.http.fetch(`/groups/${this.groupId}`, {
+        method: 'delete'
+      })
+        .then(response => {
+          this.router.navigateToRoute('groups');
+        });
+    });
   }
 }

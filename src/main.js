@@ -1,4 +1,5 @@
 import 'skeleton';
+import 'fetch';
 import config from './authConfig';
 
 export function configure(aurelia) {
@@ -8,14 +9,8 @@ export function configure(aurelia) {
     .plugin('spoonx/aurelia-auth', baseConfig => {
       baseConfig.configure(config);
     })
-    .plugin('xanecs/aurelia-chart');
-
-  //Uncomment the line below to enable animation.
-  //aurelia.use.plugin('aurelia-animator-css');
-  //if the css animator is enabled, add swap-order="after" to all router-view elements
-
-  //Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
-  //aurelia.use.plugin('aurelia-html-import-template-loader')
+    .plugin('xanecs/aurelia-chart')
+    .plugin('aurelia-dialog');
 
   aurelia.start().then(a => a.setRoot());
 }

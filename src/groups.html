@@ -17,7 +17,7 @@
         <td>
           <a if.bind="group.linked" route-href="route: createPoll; params.bind: {group: group.id}" class="button button-primary">New Poll</a>
           <a route-href="route: groupDetail; params.bind: {id: group.id}" class="button">Group Settings</a>
-          <button click.delegate="deleteGroup(group.id)" class="button">Delete</button>
+          <button click.delegate="deleteGroup(group)" class="button">Delete</button>
         </td>
       </tr>
     </tbody>

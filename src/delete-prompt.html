@@ -1,0 +1,12 @@
+<template>
+  <div class="dialog">
+    <div class="dialog-content">
+      <div class="dialog-content-inner">
+        <h4>Are you sure?</h4>
+        <p>Do you really want to delete '${name}'</p>
+        <button class="button" click.trigger="controller.cancel()">Cancel</button>
+        <button class="button button-primary" click.trigger="controller.ok(name)">Delete</button>
+      </div>
+    </div>
+  </div>
+</template>

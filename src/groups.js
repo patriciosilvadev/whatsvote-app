@@ -1,18 +1,21 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
+import {DialogService} from 'aurelia-dialog';
+import {DeletePrompt} from './delete-prompt';
 
-@inject(HttpClient)
+@inject(HttpClient, DialogService)
 export class Groups{
   groups = [];
 
-  constructor(http) {
+  constructor(http, dialogService) {
     this.http = http;
+    this.dialog = dialogService;
   }
 
   fetchGroups() {
     return this.http.fetch('/groups')
       .then(response => response.json())
-      .then(response => this.groups = response.groups);
+      .then(response => this.groups = response.groups || []);
   }
 
   activate() {
@@ -39,13 +42,16 @@ export class Groups{
       });
   }
 
-  deleteGroup(id) {
-    this.http.fetch(`/groups/${id}`, {
-      method: 'delete'
-    })
-      .then(response => response.json())
-      .then(response => {
-        this.fetchGroups();
+  deleteGroup(group) {
+    return this.dialog.open({viewModel: DeletePrompt, model: group.name}).then(result => {
+      if(result.wasCancelled) return;
+      this.http.fetch(`/groups/${group.id}`, {
+        method: 'delete'
       })
+        .then(response => response.json())
+        .then(response => {
+          this.fetchGroups();
+        });
+    });
   }
 }

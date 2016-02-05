@@ -1,10 +1,13 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
+import {DialogService} from 'aurelia-dialog';
+import {DeletePrompt} from './delete-prompt';
 
-@inject(HttpClient)
+@inject(HttpClient, DialogService)
 export class Polls {
-  constructor(httpClient) {
+  constructor(httpClient, dialogService) {
     this.http = httpClient;
+    this.dialog = dialogService;
   }
 
   activate() {
@@ -14,10 +17,10 @@ export class Polls {
   fetchPolls() {
     return this.http.fetch('/polls')
       .then(response => response.json())
-      .then(response => this.polls = response.polls)
+      .then(response => this.polls = response.polls.reverse())
       .then(response => {
+        let promises = []
         for (let poll of this.polls) {
-          console.log(poll);
           poll.votesCast = 0;
           for (let option in poll.votes) {
             poll.votesCast += poll.votes[option].length;
@@ -25,25 +28,30 @@ export class Polls {
 
           poll.votesTotal = poll.votesCast + poll.tokens.length;
 
-          return this.http.fetch(`/groups/${poll.groupId}`)
+          promises.push(this.http.fetch(`/groups/${poll.groupId}`)
             .then(rp => rp.json())
             .then(rp => poll.group = rp)
             .catch(error => {
               if (error.status == 404) {
                 poll.group = {name: 'deleted'};
               }
-            });
+            }));
         }
+        return promises;
       });
   }
 
-  deletePoll(id) {
-    return this.http.fetch(`/polls/${id}`, {
-      method: 'delete'
-    })
-      .then(response => response.json())
-      .then(response => {
-        this.fetchPolls()
-      });
+  deletePoll(poll) {
+    return this.dialog.open({viewModel: DeletePrompt, model: poll.question}).then(result => {
+      if(!result.wasCancelled) {
+        return this.http.fetch(`/polls/${poll.id}`, {
+          method: 'delete'
+        })
+          .then(response => response.json())
+          .then(response => {
+            this.fetchPolls()
+          });
+      }
+    });
   }
 }
