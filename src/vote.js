@@ -5,6 +5,7 @@ import {Router} from 'aurelia-router';
 @inject(HttpClient, Router)
 export class Vote {
   selectedOption = -1;
+  selectedOptions = [];
 
   constructor(httpClient, router) {
     this.http = httpClient;
@@ -27,9 +28,24 @@ export class Vote {
   }
 
   submitVote() {
-    if (this.selectedOption < 0) {
-      this.alert = 'Please select an option!';
-      return;
+
+    let body = {};
+
+    switch (this.poll.method) {
+      case 'single-choice':
+        if (this.selectedOption < 0) {
+          this.alert = 'Please select an option!';
+          return;
+        }
+        body = {optionId: this.selectedOption};
+        break;
+      case 'multiple-choice':
+        if (this.selectedOptions.length <= 0) {
+          this.alert = 'Please select one or more options!';
+          return;
+        }
+        body = {optionIds: this.selectedOptions};
+        break;
     }
 
     this.http.fetch(`/polls/vote/${this.pollId}/${this.token}`, {
@@ -37,7 +53,7 @@ export class Vote {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({optionId: this.selectedOption})
+      body: JSON.stringify(body)
     })
       .then(response => response.json())
       .then(response => {

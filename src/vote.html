@@ -7,7 +7,8 @@
   <div if.bind="poll">
     <div class="input" repeat.for="option of poll.options">
       <label>
-        <input type="radio" name="opts" value.bind="option.id" checked.bind="$parent.selectedOption">
+        <input type="radio" name="opts" value.bind="option.id" checked.bind="$parent.selectedOption" if.bind="poll.method == 'single-choice'">
+        <input type="checkbox" name="opts" value.bind="option.id" checked.bind="$parent.selectedOptions" if.bind="poll.method == 'multiple-choice'">
         <span class="label-body">${option.text}</span>
       </label>
     </div>
