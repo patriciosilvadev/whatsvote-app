@@ -84,3 +84,28 @@
   margin: 2rem 0;
   padding: 1rem;
 }
+
+/* --- Dialogs --- */
+.dialog {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto !important;
+  background: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.dialog-content-inner {
+  margin-top: 4rem;
+  background: white;
+  padding: 2rem;
+  box-shadow: 0 0 1rem #ccc;
+}
