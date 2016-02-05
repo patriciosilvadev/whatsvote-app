@@ -1,5 +1,8 @@
 <template>
   <h1>Login</h1>
+  <div class="alert" if.bind="alert.length">
+    ${alert}
+  </div>
   <form submit.delegate="login()">
     <div class="input">
       <label for="email">Email</label>

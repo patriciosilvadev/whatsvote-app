@@ -32,7 +32,9 @@ export class App {
       {route: 'vote/cast', name: 'voteCast', moduleId: 'vote-cast', title: 'Vote cast'},
       {route: 'polls', name: 'polls', moduleId: 'polls', title: 'Polls', auth: true, nav: true},
       {route: 'polls/:id', name: 'pollDetail', moduleId: 'poll-detail', auth: true},
-      {route: 'results/:id', name: 'pollResults', moduleId: 'results'}
+      {route: 'results/:id', name: 'pollResults', moduleId: 'results'},
+      {route: 'verifiyrequired', name: 'verifyRequired', moduleId: 'verify-required'},
+      {route: 'verify/:user/:token', name: 'verify', moduleId: 'verify'}
     ]);
 
     this.router = router;

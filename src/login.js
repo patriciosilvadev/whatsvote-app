@@ -7,10 +7,16 @@ export class Login {
     this.auth = authService;
   }
 
+  alert;
+
   email;
   password;
 
   login() {
-    this.auth.login(this.email, this.password);
+    this.auth.login(this.email, this.password)
+      .catch(error => {
+        console.log(error);
+        this.alert = 'Invalid email or password.'
+      });
   }
 }

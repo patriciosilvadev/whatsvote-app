@@ -47,10 +47,17 @@ export class Login {
         email: this.email,
         password: this.password
       })
-    }).then(response => {
-      this.router.navigateToRoute('login');
-    }).catch(response => {
-      this.alert = 'An error occured. Please check your inputs and try again.'
-    });
+    })
+      .then(response => {
+        this.router.navigateToRoute('verifyRequired');
+      })
+      .catch(response => response.json())
+      .then(response => {
+        if (response.message) {
+          this.alert = response.message;
+          return;
+        }
+        this.alert = 'An error occured. Please check your inputs and try again.'
+      });
   }
 }
