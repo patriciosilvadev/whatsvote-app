@@ -15,6 +15,7 @@ System.config({
   "map": {
     "aurelia-animator-css": "npm:aurelia-animator-css@1.0.0-beta.1.0.3",
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-beta.1.0.1",
+    "aurelia-dialog": "npm:aurelia-dialog@0.5.3",
     "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0-beta.1.0.2",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.0.8",
     "aurelia-history-browser": "npm:aurelia-history-browser@1.0.0-beta.1.0.1",
@@ -147,6 +148,14 @@ System.config({
       "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1",
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.0.2",
       "core-js": "npm:core-js@1.2.6"
+    },
+    "npm:aurelia-dialog@0.5.3": {
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.0.0-beta.1.0.1",
+      "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.0.8",
+      "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1",
+      "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.0.2",
+      "aurelia-templating": "npm:aurelia-templating@1.0.0-beta.1.0.3",
+      "text": "github:systemjs/plugin-text@0.0.3"
     },
     "npm:aurelia-event-aggregator@1.0.0-beta.1": {
       "aurelia-logging": "npm:aurelia-logging@1.0.0-beta.1"
@@ -349,6 +358,8 @@ System.config({
       "authConfig",
       "create-poll",
       "create-poll.html!github:systemjs/plugin-text@0.0.3",
+      "delete-prompt",
+      "delete-prompt.html!github:systemjs/plugin-text@0.0.3",
       "group-detail",
       "group-detail.html!github:systemjs/plugin-text@0.0.3",
       "groups",
@@ -365,6 +376,10 @@ System.config({
       "results",
       "signup",
       "signup.html!github:systemjs/plugin-text@0.0.3",
+      "verify",
+      "verify-required",
+      "verify-required.html!github:systemjs/plugin-text@0.0.3",
+      "verify.html!github:systemjs/plugin-text@0.0.3",
       "vote",
       "vote-cast",
       "vote-cast.html!github:systemjs/plugin-text@0.0.3",
