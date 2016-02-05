@@ -64,7 +64,7 @@ export class CreatePoll {
     })
       .then(response => response.json())
       .then(response => {
-        alert('Poll submitted successfully')
+        this.router.navigateToRoute('pollDetail', {id: response.id});
       })
       .catch(error => {
         this.alert = error;
