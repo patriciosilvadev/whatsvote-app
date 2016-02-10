@@ -25,11 +25,32 @@
     </div>
   </section>
   <section if.bind="group.linked">
-    <h4>Participants</h4>
-    <ul>
-      <li repeat.for="participant of group.participants">+${participant}</li>
-    </ul>
-    <button class="button" click.delegate="fetchGroup(true)">Refresh</button>
+    <div class="row">
+      <div class="one-half column">
+        <h4>Participants</h4>
+        <ul>
+          <li repeat.for="participant of group.participants">+${participant}</li>
+        </ul>
+        <button class="button" click.delegate="fetchGroup(true)">Refresh</button>
+      </div>
+      <div class="one-half column">
+        <h4>Link numbers</h4>
+        <p>Link multiple numbers together. All numbers in a linked set will receive the same token. Use this if one person has multiple numbers in one group.</p>
+        <div if.bind="group.links">
+          <div class="input" repeat.for="link of group.links">
+            <ul>  
+              <li repeat.for="number of link">+${number} </li>
+            </ul>
+            <button class="button" click.delegate="deleteLink(link)">Delete</button>
+          </div>
+        </div>
+        <div>
+          <textarea class="u-full-width" value.bind="newlink" placeholder="49123456&#0010;49123789"></textarea>
+        </div>
+        <div class="input">
+          <button class="button button-primary" click.delegate="createLink()">Create Link</button>
+      </div>
+    </div>
   </section>
 
   <section class="panel" if.bind="!group.linked">

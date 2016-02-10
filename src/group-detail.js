@@ -44,4 +44,28 @@ export class GroupDetail {
         });
     });
   }
+
+  createLink() {
+    let link = this.newlink.match(/[^\r\n]+/g);
+    if (!this.group.links) {
+      this.group.links = [];
+    }
+    this.group.links.push(link);
+    return this.http.fetch(`/groups/${this.groupId}`, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.group)
+    })
+      .then(response => response.json())
+      .then(response => {
+        delete response.ok;
+        this.group = response;
+        this.newlink = '';
+      })
+      .catch(error => {
+        this.alert = error.json().message;
+      });
+  }
 }
