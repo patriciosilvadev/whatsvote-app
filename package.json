@@ -73,7 +73,7 @@
       "font-awesome": "npm:font-awesome@^4.5.0",
       "normalize.css": "github:necolas/normalize.css@^3.0.3",
       "skeleton": "github:dhg/Skeleton@^2.0.4",
-      "spoonx/aurelia-auth": "github:spoonx/aurelia-auth@^0.13.0",
+      "spoonx/aurelia-auth": "github:SpoonX/aurelia-auth@^0.13.0",
       "text": "github:systemjs/plugin-text@^0.0.3",
       "xanecs/aurelia-chart": "github:xanecs/aurelia-chart@^0.3.0"
     },
