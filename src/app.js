@@ -7,7 +7,7 @@ export class App {
   constructor(fetchConfig, http) {
     this.fetchConfig = fetchConfig;
     http.configure(config => {
-      let baseUrl = (window.location.href.indexOf('localhost') > 0 ? 'http://localhost:3000' : 'http://api.whatsvote.leonadi.de');
+      let baseUrl = (window.location.href.indexOf('localhost') > 0 ? 'http://localhost:3000' : 'https://api.whatsvote.leonadi.de');
       config
         .useStandardConfiguration()
         .withBaseUrl(baseUrl);
